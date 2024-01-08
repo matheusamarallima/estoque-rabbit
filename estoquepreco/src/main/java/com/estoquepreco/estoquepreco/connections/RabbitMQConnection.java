@@ -26,7 +26,7 @@ public class RabbitMQConnection {
     }
 
     private Binding relacionamento(Queue fila, DirectExchange troca){
-       return new Binding(fila.getName(), Binding.DestinationType.EXCHANGE, troca.getName(), fila.getName(), null);
+       return new Binding(fila.getName(), Binding.DestinationType.QUEUE, troca.getName(), fila.getName(), null);
     }
 
     // Mesmo assim, precisamos que esse método seja chamado, como fazemos isso? Utilizando a anotação abaixo:
