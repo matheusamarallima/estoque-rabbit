@@ -1,6 +1,7 @@
 package com.estoquepreco.estoquepreco.connections;
 
 import com.estoquepreco.estoquepreco.consts.RabbitConsts;
+import jakarta.annotation.PostConstruct;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.DirectExchange;
@@ -28,6 +29,9 @@ public class RabbitMQConnection {
        return new Binding(fila.getName(), Binding.DestinationType.EXCHANGE, troca.getName(), fila.getName(), null);
     }
 
+    // Mesmo assim, precisamos que esse método seja chamado, como fazemos isso? Utilizando a anotação abaixo:
+    @PostConstruct
+    //Com essa anotação ele vai executar oq está dentro do método, criando nossas filas!
     private void adiciona(){
         Queue filaEstoque = this.fila(RabbitConsts.FILA_ESTOQUE);
         Queue filaPreco = this.fila(RabbitConsts.FILA_PRECO);
